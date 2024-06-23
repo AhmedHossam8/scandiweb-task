@@ -1,0 +1,90 @@
+@import '../../variables';
+
+.card {
+  overflow: hidden;
+  margin: 0 30px;
+  width: 330px;
+  height: auto;
+  text-align: left;
+  padding: 16px;
+  position: relative;
+}
+
+.card:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-image-container {
+  position: relative;
+  padding: 10px;
+}
+
+.card-image {
+  width: 100%;
+  height: 300px;
+  background-color: #FAFAFA;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.8);
+  color: $subtext-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.card-content {
+  justify-content: left;
+  align-items: left;
+}
+
+.card-description {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: $subtext-color;
+}
+
+.card-price {
+  font-size: 15px;
+  color: $text-color;
+}
+
+.out-of-stock-price {
+  color: $subtext-color;
+}
+
+.shopping-cart-icon {
+  position: absolute;
+  top: 78%;
+  left: 85%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  border-radius: 50%;
+  background-color: $primary-color;
+  width: 40px;
+  height: 40px;
+}
+
+.card:hover .shopping-cart-icon {
+  opacity: 1;
+}
+
+.shopping-cart-icon:hover {
+  cursor: pointer;
+}
+
+.card:hover .shopping-cart-icon {
+  opacity: 0;
+}
+
+.card:hover .card-image-container:not(.out-of-stock)+.shopping-cart-icon {
+  opacity: 1;
+}

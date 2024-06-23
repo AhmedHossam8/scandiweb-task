@@ -1,0 +1,12 @@
+{
+    "name": "scandiweb/scandiweb",
+    "description": "ScandiWeb E-commerce Backend",
+    "autoload": {
+        "psr-4": {
+            "ScandiWeb\\": "src/"
+        }
+    },
+    "require": {
+        "webonyx/graphql-php": "^14.11"
+    }
+}
