@@ -5,14 +5,12 @@
     use GraphQL\Type\Definition\Type;
     use GraphQL\Type\Definition\ObjectType;
     
-    class CurrencyType extends ObjectType {
+    class GalleryType extends ObjectType {
         public function __construct() {
             parent::__construct([
-                'name' => 'Currency',
+                'name' => 'Gallery',
                 'fields' => [
-                    'label' => Type::string(),
-                    'symbol' => Type::string(),
-                    '__typename' => Type::string(),
+                    'image' => Type::string(),
                 ],
             ]);
         }

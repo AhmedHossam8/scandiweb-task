@@ -7,7 +7,7 @@ import { fetchProducts } from '../../redux/actions/productActions';
 import { updateProductsToView } from '../../redux/slices/productsToViewSlice';
 class ProductListing extends Component {
   componentDidMount() {
-    const { fetchProducts, products, updateProductsToView } = this.props;
+    const { fetchProducts } = this.props;
     fetchProducts();
   }
   componentDidUpdate(){
@@ -31,11 +31,11 @@ class ProductListing extends Component {
            <Link to={`/product/${item.id}`}>
               <Card
                 key={index}
-                imageSrc={JSON.parse(item?.gallery)[0]}
+                imageSrc={item?.gallery[0]}
                 name={item.name}
-                price={JSON.parse(item?.prices)[0]?.amount}
+                price={item?.prices[0].amount}
                 inStock={item.inStock}
-                symbol={JSON.parse(item?.prices)[0]?.currency?.symbol}
+                symbol={item?.prices[0]?.currency?.symbol}
                 onCartClick={this.handleCardClick}
               />
             </Link>

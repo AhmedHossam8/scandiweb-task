@@ -64,16 +64,35 @@ export const fetchProducts = () => {
                 query: gql`
                    query Category {
                         products {
-                            id
-                            name
-                            description
-                            inStock
-                            prices
-                            gallery
-                            category
-                            attributes
-                            brand
-                        }
+        id
+        name
+        inStock
+        gallery
+        description
+        category
+        brand
+        attributes {
+            __typename
+            id
+            name
+            type
+            items {
+                id
+                value
+                displayValue
+                __typename
+            }
+        }
+        prices {
+            currency {
+                label
+                symbol
+                __typename
+            }
+            amount
+            __typename
+        }
+    }
                     }
 
                 `,
@@ -94,14 +113,33 @@ export const fetchProductById = (productId) => {
               query Product($id: String!) {
                 product(id: $id)  {
                   id
-                  name
-                  description
-                  inStock
-                  gallery
-                  prices
-                  category
-                  attributes
-                  brand
+        name
+        inStock
+        gallery
+        description
+        category
+        brand
+        attributes {
+            id
+            name
+            type
+            __typename
+            items {
+                id
+                value
+                displayValue
+                __typename
+            }
+        }
+        prices {
+            amount
+            __typename
+            currency {
+                label
+                symbol
+                __typename
+            }
+        }
                 }
               }
             `,
@@ -125,14 +163,33 @@ export const fetchProductByCategory = (category) => {
               query Categories($category: String!) {
                 productsByCategory(category: $category)  {
                   id
-                  name
-                  description
-                  inStock
-                  gallery
-                  prices
-                  category
-                  attributes
-                  brand
+        name
+        inStock
+        gallery
+        description
+        category
+        brand
+        attributes {
+            id
+            name
+            type
+            __typename
+            items {
+                id
+                value
+                displayValue
+                __typename
+            }
+        }
+        prices {
+            amount
+            __typename
+            currency {
+                label
+                symbol
+                __typename
+            }
+        }
                 }
               }
             `,

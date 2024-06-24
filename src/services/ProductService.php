@@ -17,7 +17,18 @@
             $query = "SELECT * FROM products";
             $stmt = $this->conn->prepare($query);
             $stmt->execute();
-            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+            foreach ($products as &$product) {
+                $product['gallery'] = json_decode($product['gallery'], true);
+            }
+            foreach ($products as &$product) {
+                $product['attributes'] = json_decode($product['attributes'], true);
+            }
+            foreach ($products as &$product) {
+                $product['prices'] = json_decode($product['prices'], true);
+            }
+            return $products;
         }
 
         public function getProductById($id)
@@ -26,7 +37,15 @@
             $stmt = $this->conn->prepare($query);
             $stmt->bindParam(':id', $id, PDO::PARAM_STR);
             $stmt->execute();
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            $product = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            $product['gallery'] = json_decode($product['gallery'], true); 
+            $product['attributes'] = json_decode($product['attributes'], true);
+            $product['prices'] = json_decode($product['prices'], true);
+
+            return $product;
+            
         }
         public function getProductsByCategory($category)
         {
@@ -36,11 +55,31 @@
             $stmt->execute();
             
             $products =  $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($products as &$product) {
+                $product['gallery'] = json_decode($product['gallery'], true);
+            }
+            foreach ($products as &$product) {
+                $product['attributes'] = json_decode($product['attributes'], true);
+            }
+            foreach ($products as &$product) {
+                $product['prices'] = json_decode($product['prices'], true);
+            }
             if ($products === false || count($products) === 0) {
                 $query = "SELECT * FROM products";
                 $stmt = $this->conn->prepare($query);
                 $stmt->execute();
-                return $stmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($products as &$product) {
+                    $product['gallery'] = json_decode($product['gallery'], true);
+                }
+                foreach ($products as &$product) {
+                    $product['attributes'] = json_decode($product['attributes'], true);
+                }
+                foreach ($products as &$product) {
+                    $product['prices'] = json_decode($product['prices'], true);
+                }
+                return $products;
             } else {
                 return $products; // Return the array of products
             }

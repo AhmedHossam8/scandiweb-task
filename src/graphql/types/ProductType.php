@@ -4,6 +4,7 @@
 
     use GraphQL\Type\Definition\Type;
     use GraphQL\Type\Definition\ObjectType;
+    use ScandiWeb\GraphQL\Utils\TypeRegistry;
 
     class ProductType extends ObjectType {
         public function __construct() {
@@ -12,12 +13,12 @@
                 'fields' => [
                     'id' => Type::string(),
                     'name' => Type::string(),
-                    'description' => Type::string(),
                     'inStock' => Type::boolean(),
-                    'prices' => Type::string(),
-                    'gallery' => Type::string(),
+                    'gallery' => Type::listOf(Type::string()),
+                    'description' => Type::string(),
                     'category' => Type::string(),
-                    'attributes' => Type::string(),
+                    'attributes' => Type::listOf(new AttributeSetType()),
+                    'prices' => Type::listOf(new PriceType()),
                     'brand' => Type::string(),
                 ],
             ]);

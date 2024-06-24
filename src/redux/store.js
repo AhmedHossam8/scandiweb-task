@@ -7,13 +7,16 @@ import productsListReducer from './slices/selectedCategorySlice'
 import productsByCategoryReducer from './reducers/productsByCategoryReducer';
 import selectedCategoryReducer from './slices/selectedCategorySlice'
 import productsToViewReducer from './slices/productsToViewSlice'
+import cartItemsReducer from './slices/cartItemsSlice'
+
 const rootReducer = combineReducers({
   category: categoryReducer,
   products: productReducer,
   product: productInfoReducer,
   productsByCategory: productsByCategoryReducer,
   selectedCategory: selectedCategoryReducer,
-  productsToView: productsToViewReducer
+  productsToView: productsToViewReducer,
+  cartItems: cartItemsReducer
 });
 
 const store = configureStore({

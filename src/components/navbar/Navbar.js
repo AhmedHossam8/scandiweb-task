@@ -61,7 +61,7 @@ class Navbar extends Component {
                         <img src="https://headless-security.org/gfx/logo.png" alt="Logo" />
                     </div>
                     <div className="right-section">
-                        <Cart cartItems={cartItems} isDropdownOpen={this.state.isDropdownOpen} toggleDropdown={this.toggleDropdown} />
+                        <Cart isDropdownOpen={this.state.isDropdownOpen} toggleDropdown={this.toggleDropdown} />
                     </div>
                 </nav>
             </>

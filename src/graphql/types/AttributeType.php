@@ -1,17 +1,18 @@
 <?php
-
+    
     namespace ScandiWeb\GraphQL\Types;
     
     use GraphQL\Type\Definition\Type;
     use GraphQL\Type\Definition\ObjectType;
     
-    class CurrencyType extends ObjectType {
+    class AttributeType extends ObjectType {
         public function __construct() {
             parent::__construct([
-                'name' => 'Currency',
+                'name' => 'Attribute',
                 'fields' => [
-                    'label' => Type::string(),
-                    'symbol' => Type::string(),
+                    'id' => Type::string(),
+                    'value' => Type::string(),
+                    'displayValue' => Type::string(),
                     '__typename' => Type::string(),
                 ],
             ]);

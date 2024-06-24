@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 import Selector from '../../components/productSelector/Selector'
 import { connect } from 'react-redux';
 import { fetchProductById } from '../../redux/actions/productActions';
+import cartItemsSlice, { updateCartItems } from '../../redux/slices/cartItemsSlice';
 class ProductInfo extends Component {
     constructor(props) {
         super(props);
@@ -13,20 +14,24 @@ class ProductInfo extends Component {
             product: {}
         };
     }
-    componentDidMount(){
-        const {id} = this.props.match.params
+    componentDidMount() {
+        const { id } = this.props.match.params
         const { fetchProductById } = this.props;
-
         fetchProductById(id);
-        
+
     };
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.product?.id !== this.props.product?.id) {
+            this.setState({ product: this.props.product })
+        }
+    }
     handleImageSelect = (index) => {
         this.setState({ selectedImageIndex: index, currentIndex: index });
     };
 
     handleNextImage = () => {
         this.setState((prevState, props) => {
-            const newIndex = (prevState.currentIndex + 1) % JSON.parse(props.product.gallery).length;
+            const newIndex = (prevState.currentIndex + 1) % props.product.gallery.length;
             return {
                 currentIndex: newIndex,
                 selectedImageIndex: newIndex
@@ -36,7 +41,7 @@ class ProductInfo extends Component {
 
     handlePrevImage = () => {
         this.setState((prevState, props) => {
-            const newIndex = (prevState.currentIndex - 1 + JSON.parse(props.product.gallery).length) % JSON.parse(props.product.gallery).length;
+            const newIndex = (prevState.currentIndex - 1 + props.product.gallery.length) % props.product.gallery.length;
             return {
                 currentIndex: newIndex,
                 selectedImageIndex: newIndex
@@ -44,18 +49,31 @@ class ProductInfo extends Component {
         });
     };
 
-    handleAddToCart = () => {
-        const { product, handleAddToCart } = this.props;
-        const { activeColor, activeSize } = this.state
+    handleAttrClick = (attributes) => {
+        const { product } = this.props;
+        const tempProduct = { ...product, attributes };
+        this.setState({ product: tempProduct });
+    }
 
-        if (activeSize && activeColor) {
+    handleAddToCart = () => {
+        const { handleAddToCart, cartItems, updateCartItems } = this.props;
+        const {product} = this.state
+        const allAttributesSelected = false;
+        const attributesWithSelections = []
+        product?.attributes?.forEach(attr => {
+            attr.items?.forEach(item => {
+                if(item.selected) attributesWithSelections.push(attr)
+            })
+        });
+
+        if (attributesWithSelections.length === product?.attributes.length) {
             handleAddToCart({
                 ...product,
-                size: activeSize,
-                color: activeColor
+                attributes: product.attributes
             });
+            updateCartItems([...cartItems, {...product, quantity: 1}]);
         } else {
-            alert('Please select a size and color');
+            alert("Please select your preferences.");
         }
     };
     handleSizeClick = (size) => {
@@ -67,14 +85,15 @@ class ProductInfo extends Component {
     };
     render() {
         const { selectedImageIndex, activeSize, activeColor } = this.state;
-        const { product, loading, error } = this.props;
-        console.log(product)
-    if (loading) return <div>Loading...</div>;
-    if (error) return <div>{error}</div>;
+        const { loading, error } = this.props;
+        const { product } = this.state
+
+        if (loading) return <div>Loading...</div>;
+        if (error) return <div>{error}</div>;
         return product && product.gallery ? (
             <div className="product-page">
                 <div className="small-images">
-                    {JSON.parse(product?.gallery)?.map((image, index) => (
+                    {product?.gallery?.map((image, index) => (
                         <img
                             key={index}
                             src={image}
@@ -86,25 +105,22 @@ class ProductInfo extends Component {
                 </div>
                 <div className="product-image-div">
                     <button className="arrow left-arrow" onClick={this.handlePrevImage}>&lt;</button>
-                    <img src={JSON.parse(product.gallery)[selectedImageIndex]} alt="Product" className='product-image' />
+                    <img src={product.gallery[selectedImageIndex]} alt="Product" className='product-image' />
                     <button className="arrow right-arrow" onClick={this.handleNextImage}>&gt;</button>
                 </div>
                 <div className="product-details">
                     <h2>{product.name}</h2>
 
                     <div className="product-info">
-                        <Selector 
-                            activeColor={this.state.activeColor} 
-                            activeSize={this.state.activeSize}
-                            attributes={JSON.parse(product?.attributes)}
-                            handleColorClick={this.handleColorClick}
-                            handleSizeClick={this.handleSizeClick}
+                        <Selector
+                            handleAttributeClick={this.handleAttrClick}
+                            attributes={product?.attributes}
                         />
                     </div>
 
                     <div className="product-info">
                         <p>PRICE:</p>
-                        <p>${product.price}</p>
+                        <p>${product.prices[0]?.amount}</p>
                         <div dangerouslySetInnerHTML={{ __html: product.description }} />
 
                     </div>
@@ -113,7 +129,7 @@ class ProductInfo extends Component {
             </div>
         ) : (
             <div>Product not found.</div>
-        ); 
+        );
     }
 }
 
@@ -121,10 +137,12 @@ const mapStateToProps = (state) => ({
     product: state.product.product,
     loading: state.product.loading,
     error: state.product.error,
-  });
-  
+    cartItems: state.cartItems.cartItems
+});
+
 const mapDispatchToProps = {
     fetchProductById,
+    updateCartItems
 };
-  
+
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ProductInfo));

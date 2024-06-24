@@ -50,7 +50,6 @@ class App extends Component {
         <Navbar
           activeIndex={this.state.activeIndex}
           handleLinkClick={this.handleLinkClick}
-          cartItems={this.state.cartItems}
         />
         <Switch>
           <Route exact path="/">
