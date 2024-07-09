@@ -5,6 +5,7 @@ import Selector from '../../components/productSelector/Selector'
 import { connect } from 'react-redux';
 import { fetchProductById } from '../../redux/actions/productActions';
 import cartItemsSlice, { updateCartItems } from '../../redux/slices/cartItemsSlice';
+import { updateWrappedQueryRef } from '@apollo/client/react/internal';
 class ProductInfo extends Component {
     constructor(props) {
         super(props);
@@ -57,25 +58,43 @@ class ProductInfo extends Component {
 
     handleAddToCart = () => {
         const { handleAddToCart, cartItems, updateCartItems } = this.props;
-        const {product} = this.state
-        const allAttributesSelected = false;
-        const attributesWithSelections = []
+        const { product } = this.state;
+    
+        const attributesWithSelections = [];
         product?.attributes?.forEach(attr => {
             attr.items?.forEach(item => {
-                if(item.selected) attributesWithSelections.push(attr)
-            })
+                if (item.selected) attributesWithSelections.push(attr);
+            });
         });
-
+    
         if (attributesWithSelections.length === product?.attributes.length) {
+            const existingProductIndex = cartItems.findIndex(cartItem => {
+                if (cartItem.id !== product.id) return false;
+                return cartItem.attributes.every((attr, index) => 
+                    attr.id === product.attributes[index].id && 
+                    attr.items.every((item, itemIndex) => item.selected === product.attributes[index].items[itemIndex].selected)
+                );
+            });
+    
+            if (existingProductIndex > -1) {
+                const updatedCartItems = [...cartItems];
+                const item = {...updatedCartItems[existingProductIndex]};
+                item.quantity +=1
+                updatedCartItems[existingProductIndex] = item
+                updateCartItems(updatedCartItems);
+            } else {
+                updateCartItems([...cartItems, { ...product, quantity: 1 }]);
+            }
+    
             handleAddToCart({
                 ...product,
                 attributes: product.attributes
             });
-            updateCartItems([...cartItems, {...product, quantity: 1}]);
         } else {
             alert("Please select your preferences.");
         }
     };
+    
     handleSizeClick = (size) => {
         this.setState({ activeSize: size });
     };

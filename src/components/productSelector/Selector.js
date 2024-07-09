@@ -12,19 +12,21 @@ class Selector extends Component {
         this.props.handleSizeClick(size)
     }
     handleAttributeClick = (attr, item) => {
-        const attributes = [...this.props.attributes].map(a => {
-            if (a.id === attr.id) {
-                return {
-                    ...a,
-                    items: a.items.map(i => ({
-                        ...i,
-                        selected: i.id === item.id
-                    }))
-                };
-            }
-            return a;
-        });
-        this.props.handleAttributeClick(attributes);
+        if(!this.props.disableOptions){
+            const attributes = [...this.props.attributes].map(a => {
+                if (a.id === attr.id) {
+                    return {
+                        ...a,
+                        items: a.items.map(i => ({
+                            ...i,
+                            selected: i.id === item.id
+                        }))
+                    };
+                }
+                return a;
+            });
+            this.props.handleAttributeClick(attributes);
+        }
     }
     render() {
         const { activeSize, activeColor, attributes } = this.props;

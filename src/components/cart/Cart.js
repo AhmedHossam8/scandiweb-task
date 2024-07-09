@@ -60,6 +60,7 @@ class Cart extends Component {
                                                     <Selector
                                                         handleAttributeClick={this.handleAttrClick}
                                                         attributes={item?.attributes}
+                                                        disableOptions={true}
                                                     />
                                                 </div>
                                             </div>

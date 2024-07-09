@@ -1,15 +1,15 @@
 <?php
 
-namespace ScandiWeb\GraphQL;
+require_once __DIR__ . '../../../vendor/autoload.php';
 
 use GraphQL\Type\Schema;
 use GraphQL\Type\Definition\ObjectType;
 use ScandiWeb\GraphQL\Queries\CategoryQuery;
 use ScandiWeb\GraphQL\Queries\ProductQuery;
+use ScandiWeb\GraphQL\Mutations\OrderMutation;
+use ScandiWeb\GraphQL\Utils\TypeRegistry;
 
-require_once __DIR__ . '../../../vendor/autoload.php';
-
-// Define GraphQL schema
+// Define the query type
 $queryType = new ObjectType([
     'name' => 'Query',
     'fields' => [
