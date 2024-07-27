@@ -1,19 +1,19 @@
 <?php return array(
     'root' => array(
-        'name' => 'scandiweb/scandiweb',
+        'name' => 'scandiweb/clothes-app',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'c19f3d4679ac91929ed1cb71b3cecced659ca5c6',
+        'reference' => 'f3ac8b67c5caa416d8168e491224d72c4e26b706',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        'scandiweb/scandiweb' => array(
+        'scandiweb/clothes-app' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'c19f3d4679ac91929ed1cb71b3cecced659ca5c6',
+            'reference' => 'f3ac8b67c5caa416d8168e491224d72c4e26b706',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
