@@ -6,8 +6,9 @@
     
     // Autoload dependencies and project files
     // require_once __DIR__ . '/../src/graphql/schema.php';
-    require_once '../src/db.php';
-    require_once '../src/graphql/schema.php';
+    require_once __DIR__ . '/../vendor/autoload.php';
+    require_once __DIR__ . '/../src/db.php';
+    require_once __DIR__ . '/../src/graphql/schema.php';
     
     use GraphQL\GraphQL;
     use GraphQL\Error\DebugFlag;
