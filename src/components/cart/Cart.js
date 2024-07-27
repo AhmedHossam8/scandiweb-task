@@ -85,7 +85,7 @@ class Cart extends Component {
                             <div className="cart-total">
                                 Total: ${cartItems.reduce((total, item) => total + item.prices[0]?.amount * item.quantity, 0)}
                             </div>
-                            <button className="place-order-button" onClick={handlePlaceOrder}>
+                            <button className="place-order-button" onClick={this.handlePlaceOrder}>
                                 PLACE ORDER
                             </button>
                         </div>
