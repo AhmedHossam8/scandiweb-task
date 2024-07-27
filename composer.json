@@ -1,5 +1,5 @@
 {
-    "name": "scandiweb/scandiweb",
+    "name": "scandiweb/clothes-app",
     "description": "ScandiWeb E-commerce Backend",
     "autoload": {
         "psr-4": {
@@ -8,9 +8,5 @@
     },
     "require": {
         "webonyx/graphql-php": "^14.11"
-    },
-    "post-install-cmd": [
-        "php artisan clear-compiled",
-        "chmod -R 777 public/"
-    ]
+    }
 }

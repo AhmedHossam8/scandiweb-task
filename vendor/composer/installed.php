@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'scandiweb/scandiweb',
-        'pretty_version' => 'dev-master',
-        'version' => 'dev-master',
-        'reference' => 'a9d157dad270f8cc6fb36be1e18b5209e08da44a',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'c19f3d4679ac91929ed1cb71b3cecced659ca5c6',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'scandiweb/scandiweb' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'reference' => 'a9d157dad270f8cc6fb36be1e18b5209e08da44a',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'c19f3d4679ac91929ed1cb71b3cecced659ca5c6',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
