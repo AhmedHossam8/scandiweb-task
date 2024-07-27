@@ -64,38 +64,36 @@ export const fetchProducts = () => {
                 query: gql`
                    query Category {
                         products {
-        id
-        name
-        inStock
-        gallery
-        description
-        category
-        brand
-        attributes {
-            __typename
-            id
-            name
-            type
-            items {
-                id
-                value
-                displayValue
-                __typename
-            }
-        }
-        prices {
-            currency {
-                label
-                symbol
-                __typename
-            }
-            amount
-            __typename
-        }
-    }
-                    }
-
-                `,
+                            id
+                            name
+                            inStock
+                            gallery
+                            description
+                            category
+                            brand
+                            attributes {
+                                __typename
+                                id
+                                name
+                                type
+                                items {
+                                    id
+                                    value
+                                    displayValue
+                                    __typename
+                                }
+                            }
+                            prices {
+                                currency {
+                                    label
+                                    symbol
+                                    __typename
+                                }
+                                amount
+                                __typename
+                            }
+                        }
+                    }`,
             });
 
             dispatch(fetchProductsSuccess(result.data.products));
@@ -108,8 +106,8 @@ export const fetchProductById = (productId) => {
     return async (dispatch) => {
         dispatch(fetchProductByIdRequest()); // Start request for specific product
         try {
-          const result = await client.query({
-            query: gql`
+            const result = await client.query({
+                query: gql`
               query Product($id: String!) {
                 product(id: $id)  {
                   id
@@ -143,23 +141,23 @@ export const fetchProductById = (productId) => {
                 }
               }
             `,
-            variables: {
-                id: productId
-            }
-          });
-    
-          dispatch(fetchProductByIdSuccess(result.data.product)); // Dispatch success action with fetched product
+                variables: {
+                    id: productId
+                }
+            });
+
+            dispatch(fetchProductByIdSuccess(result.data.product)); // Dispatch success action with fetched product
         } catch (error) {
-          dispatch(fetchProductByIdFailure(error.message)); // Dispatch failure action with error message
+            dispatch(fetchProductByIdFailure(error.message)); // Dispatch failure action with error message
         }
-      };
+    };
 };
 export const fetchProductByCategory = (category) => {
     return async (dispatch) => {
         dispatch(fetchProductByCategoryRequest()); // Start request for specific product
         try {
-          const result = await client.query({
-            query: gql`
+            const result = await client.query({
+                query: gql`
               query Categories($category: String!) {
                 productsByCategory(category: $category)  {
                   id
@@ -193,14 +191,14 @@ export const fetchProductByCategory = (category) => {
                 }
               }
             `,
-            variables: {
-                category: category
-            }
-          });
-    
-          dispatch(fetchProductByCategorySuccess(result.data.productsByCategory)); // Dispatch success action with fetched product
+                variables: {
+                    category: category
+                }
+            });
+
+            dispatch(fetchProductByCategorySuccess(result.data.productsByCategory)); // Dispatch success action with fetched product
         } catch (error) {
-          dispatch(fetchProductByCategoryFailure(error.message)); // Dispatch failure action with error message
+            dispatch(fetchProductByCategoryFailure(error.message)); // Dispatch failure action with error message
         }
-      };
+    };
 };

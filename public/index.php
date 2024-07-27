@@ -35,10 +35,10 @@
     }
     
     // Read the environment variable
-    $frontendEndpoint = getenv('FRONTEND_BASE_URL');
+    $frontendEndpoint = getenv('REACT_APP_FRONTEND_BASE_URL');
 
     // Set the Access-Control-Allow-Origin header
-    header("Access-Control-Allow-Origin: $frontendEndpoint");
+    header("Access-Control-Allow-Origin: *");
     header('Content-Type: application/json');
     header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
