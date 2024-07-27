@@ -1,5 +1,7 @@
 <?php
-require_once 'src/controllers/CategoryController.php';
+require_once '../../src/controllers/CategoryController.php';
+
+use ScandiWeb\Models\CategoryController;
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = explode('/', $uri);

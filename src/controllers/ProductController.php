@@ -1,7 +1,7 @@
 <?php
 namespace ScandiWeb\Models;
-require_once 'src/config/database.php';
-require_once 'src/models/Product.php';
+require_once '../../src/config/database.php';
+require_once '../../src/models/Product.php';
 
 class ProductController {
     public function index() {

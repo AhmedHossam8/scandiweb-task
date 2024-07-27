@@ -1,7 +1,7 @@
 <?php
 namespace ScandiWeb\Models;
-require_once 'src/config/database.php';
-require_once 'src/models/Category.php';
+require_once '../../src/config/database.php';
+require_once '../../src/models/Category.php';
 
 class CategoryController {
     public function index() {

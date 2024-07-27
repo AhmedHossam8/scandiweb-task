@@ -5,7 +5,7 @@
     error_reporting(E_ALL);
     
     // Autoload dependencies and project files
-    require_once __DIR__ . '/../src/graphql/schema.php';
+    require_once __DIR__ . '../src/graphql/schema.php';
     require_once '../src/db.php';
     require_once '../src/graphql/schema.php';
     

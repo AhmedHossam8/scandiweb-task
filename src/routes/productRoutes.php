@@ -1,5 +1,7 @@
 <?php
-require_once 'src/controllers/ProductController.php';
+require_once '../../src/controllers/ProductController.php';
+
+use ScandiWeb\Models\ProductController;
 
 $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 $uri = explode('/', $uri);
