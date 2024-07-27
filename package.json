@@ -2,6 +2,9 @@
   "name": "clothes-app",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+  "node": "20.x"
+  },
   "dependencies": {
     "@apollo/client": "^3.10.6",
     "@reduxjs/toolkit": "^2.2.5",

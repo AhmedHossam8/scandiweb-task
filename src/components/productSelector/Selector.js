@@ -30,8 +30,6 @@ class Selector extends Component {
     }
     render() {
         const { activeSize, activeColor, attributes } = this.props;
-        const sizes = ["XL", "L", "M"];
-        const colors = ['grey', 'green', 'black'];
 
         return (
             <div>

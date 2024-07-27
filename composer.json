@@ -8,5 +8,9 @@
     },
     "require": {
         "webonyx/graphql-php": "^14.11"
-    }
+    },
+    "post-install-cmd": [
+        "php artisan clear-compiled",
+        "chmod -R 777 public/"
+    ]
 }
