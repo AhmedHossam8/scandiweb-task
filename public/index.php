@@ -35,7 +35,7 @@
     }
     
     // Read the environment variable
-    $frontendEndpoint = getenv('ALLOWED_ORIGIN');
+    $frontendEndpoint = getenv('FRONTEND_BASE_URL');
 
     // Set the Access-Control-Allow-Origin header
     header("Access-Control-Allow-Origin: $frontendEndpoint");
