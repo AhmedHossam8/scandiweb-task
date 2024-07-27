@@ -8,11 +8,11 @@ import { updateCartItems } from '../../redux/slices/cartItemsSlice';
 class Cart extends Component {
     handleIncrement = (product) => {
         const { cartItems, updateCartItems } = this.props
-        let newCartItems = [] 
+        let newCartItems = []
         cartItems.map(c => {
             let p = { ...c }
             if (c.id === product.id) {
-                p.quantity = c.quantity+1;
+                p.quantity = c.quantity + 1;
             }
             newCartItems.push(p)
         })
@@ -21,17 +21,23 @@ class Cart extends Component {
 
     handleDecrement = (product) => {
         const { cartItems, updateCartItems } = this.props
-        let newCartItems = [] 
+        let newCartItems = []
         cartItems.map(c => {
             let p = { ...c }
             if (c.id === product.id) {
-                p.quantity = c.quantity === 0 ? c.quantity : c.quantity -1 ;
+                p.quantity = c.quantity === 0 ? c.quantity : c.quantity - 1;
             }
-            if(p.quantity > 0)
+            if (p.quantity > 0)
                 newCartItems.push(p)
         })
         updateCartItems(newCartItems)
     };
+
+    handlePlaceOrder = () =>{
+        const { toggleDropdown } = this.props;
+        window.alert("Order Placed Successfully");
+        toggleDropdown()
+    }
 
     render() {
         const { cartItems, isDropdownOpen, toggleDropdown } = this.props;
@@ -79,7 +85,9 @@ class Cart extends Component {
                             <div className="cart-total">
                                 Total: ${cartItems.reduce((total, item) => total + item.prices[0]?.amount * item.quantity, 0)}
                             </div>
-                            <button className="place-order-button">PLACE ORDER</button>
+                            <button className="place-order-button" onClick={handlePlaceOrder}>
+                                PLACE ORDER
+                            </button>
                         </div>
                     </>
                 )}
@@ -93,6 +101,6 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = {
     updateCartItems
-  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);
