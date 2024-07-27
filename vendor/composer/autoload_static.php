@@ -13,6 +13,10 @@ class ComposerStaticInit9eefdfff21606ff41e3046a82eb4e877
     );
 
     public static $prefixLengthsPsr4 = array (
+        'V' => 
+        array (
+            'Vendor\\' => 7,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
@@ -33,9 +37,17 @@ class ComposerStaticInit9eefdfff21606ff41e3046a82eb4e877
         array (
             'Dotenv\\' => 7,
         ),
+        'A' => 
+        array (
+            'App\\' => 4,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'Vendor\\' => 
+        array (
+            0 => 'C:\\xampp\\htdocs\\scandiweb\\vendor',
+        ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
@@ -68,12 +80,35 @@ class ComposerStaticInit9eefdfff21606ff41e3046a82eb4e877
         array (
             0 => __DIR__ . '/..' . '/vlucas/phpdotenv/src',
         ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
     );
 
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
+        'ScandiWeb\\GraphQL\\Queries\\CategoryQuery' => __DIR__ . '/../..' . '/src/graphql/queries/CategoryQuery.php',
+        'ScandiWeb\\GraphQL\\Queries\\ProductQuery' => __DIR__ . '/../..' . '/src/graphql/queries/ProductQuery.php',
+        'ScandiWeb\\GraphQL\\Types\\AttributeItemType' => __DIR__ . '/../..' . '/src/graphql/types/AttributeItemType.php',
+        'ScandiWeb\\GraphQL\\Types\\AttributeSetType' => __DIR__ . '/../..' . '/src/graphql/types/AttributeSetType.php',
+        'ScandiWeb\\GraphQL\\Types\\AttributeType' => __DIR__ . '/../..' . '/src/graphql/types/AttributeType.php',
+        'ScandiWeb\\GraphQL\\Types\\CategoryType' => __DIR__ . '/../..' . '/src/graphql/types/CategoryType.php',
+        'ScandiWeb\\GraphQL\\Types\\CurrencyType' => __DIR__ . '/../..' . '/src/graphql/types/CurrencyType.php',
+        'ScandiWeb\\GraphQL\\Types\\GalleryType' => __DIR__ . '/../..' . '/src/graphql/types/GalleryType.php',
+        'ScandiWeb\\GraphQL\\Types\\OrderItemType' => __DIR__ . '/../..' . '/src/graphql/types/OrderItemType.php',
+        'ScandiWeb\\GraphQL\\Types\\OrderType' => __DIR__ . '/../..' . '/src/graphql/types/OrderType.php',
+        'ScandiWeb\\GraphQL\\Types\\PriceType' => __DIR__ . '/../..' . '/src/graphql/types/PriceType.php',
+        'ScandiWeb\\GraphQL\\Types\\ProductType' => __DIR__ . '/../..' . '/src/graphql/types/ProductType.php',
+        'ScandiWeb\\GraphQL\\Utils\\TypeRegistry' => __DIR__ . '/../..' . '/src/graphql/utils/TypeRegistry.php',
+        'ScandiWeb\\Models\\Category' => __DIR__ . '/../..' . '/src/models/category.php',
+        'ScandiWeb\\Models\\CategoryController' => __DIR__ . '/../..' . '/src/controllers/CategoryController.php',
+        'ScandiWeb\\Models\\Product' => __DIR__ . '/../..' . '/src/models/product.php',
+        'ScandiWeb\\Models\\ProductController' => __DIR__ . '/../..' . '/src/controllers/ProductController.php',
+        'ScandiWeb\\Services\\CategoryService' => __DIR__ . '/../..' . '/src/services/CategoryService.php',
+        'ScandiWeb\\Services\\ProductService' => __DIR__ . '/../..' . '/src/services/ProductService.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',

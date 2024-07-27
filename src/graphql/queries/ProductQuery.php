@@ -8,6 +8,8 @@ use ScandiWeb\GraphQL\Utils\TypeRegistry;
 use ScandiWeb\Services\ProductService;
 
 class ProductQuery {
+
+    
     public static function getAllProducts() {
         return [
             'type' => Type::listOf(TypeRegistry::productType()),
